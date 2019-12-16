@@ -14,7 +14,7 @@ import time
 
 def init_driver():
     # initiate the driver:
-    driver = webdriver.Chrome('/Users/yuewang/PycharmProjects/salesforce/twitter/chromedriver')
+    driver = webdriver.Chrome('/path/chromedriver')
 
     # set a default wait time for the browser [5 seconds here]:
     driver.wait = WebDriverWait(driver, 5)
@@ -45,10 +45,6 @@ def search_twitter(driver):
     driver.get("https://twitter.com/leaseplanuk")
     wait = WebDriverWait(driver, 10)
     try:
-        # wait until the first search result is found. Search results will be tweets, which are html list items and have the class='data-item-id':
-        # wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, "li[data-item-id]")))
-
-        # scroll down to the last tweet until there are no more tweets:
         while True:
 
             # extract all the tweets:
@@ -142,13 +138,6 @@ if __name__ == "__main__":
     # start a driver for a web browser:
     driver = init_driver()
 
-    # log in to twitter (replace username/password with your own):
-    username = 'username'
-    password = 'password'
-    # login_twitter(driver, username, password)
-
-    # search twitter:
-    query = "@LeasePlanUK"
     page_source = search_twitter(driver)
 
     # extract info from the search results:
